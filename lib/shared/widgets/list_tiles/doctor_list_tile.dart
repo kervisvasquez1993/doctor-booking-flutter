@@ -1,4 +1,5 @@
 import 'package:doctor_booking_app/packages/models/models.dart';
+import 'package:doctor_booking_app/screens/screens.dart';
 import 'package:flutter/material.dart';
 
 class DoctorListTile extends StatelessWidget {
@@ -10,7 +11,11 @@ class DoctorListTile extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     return ListTile(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return DoctorDetailsScreen(doctorId: doctor.id);
+        }));
+      },
       contentPadding: EdgeInsets.zero,
       leading: CircleAvatar(
         radius: 24.0,
@@ -24,7 +29,7 @@ class DoctorListTile extends StatelessWidget {
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 4.0),
+          const SizedBox(height: 4.0),
           Text(
             doctor.category.name,
             style: textTheme.bodyMedium!.copyWith(color: colorScheme.secondary),
